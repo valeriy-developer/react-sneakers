@@ -1,0 +1,47 @@
+.home-2 {
+  background-color: #fff;
+  padding-bottom: vw(30);
+}
+
+.home-2__top-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.home-2__title {
+  font-weight: 700;
+  font-size: vw(32);
+  line-height: 100%;
+}
+
+.home-2__input-wrapper {
+  position: relative;
+  & svg {
+    position: absolute;
+    left: vw(15);
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+  }
+}
+
+.home-2__input {
+  border: 1px solid #F3F3F3;
+  border-radius: 10px;
+  padding: vw(14) vw(14) vw(14) vw(45);
+  &::placeholder {
+    font-weight: 400;
+    font-size: vw(16);
+    line-height: 100%;
+    color: #C4C4C4;
+  }
+}
+
+.home-2__bottom-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: vw(40);
+  margin-top: vw(30);
+  width: 100%;
+}

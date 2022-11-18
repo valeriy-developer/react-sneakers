@@ -1,0 +1,31 @@
+* {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  padding: 0 vw(60);
+}
+
+.global-container {
+  padding: vw(85) vw(85) 0;
+  background-color: #E7F6FF;
+}
+
+.grid {
+  display: grid;
+  width: 100%;
+  grid-auto-flow: column;
+  column-gap: 16px;
+  grid-template-columns: repeat(8, 1fr);
+}
+
