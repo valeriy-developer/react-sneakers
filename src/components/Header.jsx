@@ -4,6 +4,7 @@ import IconsCart from "../icons/IconsCart";
 import IconsFavorite from "../icons/IconsFavorite";
 import IconsPurchases from "../icons/IconsPurchases";
 import Logo from "../images/1.jpg";
+import Popup from "./Popup";
 
 const Header = () => {
   return (
@@ -34,6 +35,7 @@ const Header = () => {
         </div>
       </div>
       <div className="header__line"></div>
+      <Popup />
     </header>
   );
 };
