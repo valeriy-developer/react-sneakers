@@ -1,16 +1,71 @@
 .popup {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   width: 100%;
   height: 100%;
+  z-index: 10;
 }
 
 .popup__backdrop {
   background-color: #000000;
   opacity: 0.5;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
+}
+
+.popup__wrapper {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  right: 0;
+  top: 0;
+  width: 25%;
+  height: 100%;
+  background-color: #ffffff;
+  padding: vw(30);
+}
+
+.popup__card-wrapper {
+  margin-top: vw(30);
+}
+
+.popup__bottom-block {
+  display: flex;
+  flex-direction: column;
+  row-gap: vw(20);
+}
+
+.popup__text-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.popup__text {
+  font-weight: 400;
+  font-size: vw(16);
+  line-height: 100%;
+  white-space: nowrap;
+  padding-right: vw(10);
+}
+
+.popup__amount {
+  font-weight: 600;
+  font-size: vw(16);
+  line-height: 100%;
+  white-space: nowrap;
+  padding-left: vw(10);
+}
+
+.popup__dashed-line {
+  border: none;
+  border-bottom: 1px dashed #dfdfdf;
+  color: #fff;
+  background-color: #fff;
+  height: 1px;
+  width: 100%;
 }
