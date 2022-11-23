@@ -9,9 +9,9 @@ const Popup = () => {
       <div className='popup__wrapper'>
         <div className='popup__top-block'>
           <h2 className='popup__title'>Кошик</h2>
-          <div className='popup__card-wrapper'>
+          <ul className='popup__card-list'>
             <CardInCart />
-          </div>
+          </ul>
         </div>
         <div className='popup__bottom-block'>
           <div className='popup__text-wrapper'>
