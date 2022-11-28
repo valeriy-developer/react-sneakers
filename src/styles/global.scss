@@ -1,6 +1,11 @@
 * {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-style: normal;
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
 }
 
 img {
@@ -18,7 +23,7 @@ img {
 
 .global-container {
   padding: vw(85) vw(85) 0;
-  background-color: #E7F6FF;
+  background-color: #e7f6ff;
 }
 
 .grid {
@@ -28,4 +33,3 @@ img {
   column-gap: 16px;
   grid-template-columns: repeat(8, 1fr);
 }
-

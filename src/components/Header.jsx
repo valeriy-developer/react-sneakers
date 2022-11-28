@@ -1,9 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import IconsCart from "../icons/IconsCart";
-import IconsFavorite from "../icons/IconsFavorite";
-import IconsPurchases from "../icons/IconsPurchases";
-import Logo from "../images/1.jpg";
+import IconsCart from "./icons/IconsCart";
+import IconsFavorite from "./icons/IconsFavorite";
+import IconsPurchases from "./icons/IconsPurchases";
 
 const Header = () => {
   return (
@@ -11,7 +10,7 @@ const Header = () => {
       <div className='header__wrapper'>
         <div className='header__left-block'>
           <Link to='/' className='header__logo-link'>
-            <img className='header__logo' src={Logo} alt='Logo' />
+            <img className='header__logo' src='/images/1.jpg' alt='Logo' />
             <div className='header__text-wrapper'>
               <h2 className='header__title'>REACT SNEAKERS</h2>
               <p className='header__desc'>Магазин найкращих кросівок</p>
@@ -24,7 +23,7 @@ const Header = () => {
             <p className='header__cart-price'>1205 грн.</p>
           </div>
           <div className='header__nav-icon'>
-            <Link to='/cart'>
+            <Link to='/orders'>
               <IconsPurchases className='header__purchases' />
             </Link>
             <Link to='/favorites'>

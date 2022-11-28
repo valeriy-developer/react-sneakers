@@ -1,10 +1,9 @@
 import React from "react";
+import IconsCircleButton from "../components/icons/IconsCircleButton";
+import IconsSearch from "../components/icons/IconsSearch";
 import Button from "../components/Button";
 import Card from "../components/Card";
 import Popup from "../components/Popup";
-import IconsCircleButton from "../icons/IconsCircleButton";
-import IconsSearch from "../icons/IconsSearch";
-import bigImg from "../images/2.jpg";
 
 const Home = () => {
   return (
@@ -12,7 +11,7 @@ const Home = () => {
       <Popup />
       <section className='section home-1'>
         <div className='container home-1__slider'>
-          <img className='home-1__img' src={bigImg} alt='Sneakers' />
+          <img className='home-1__img' src='/images/2.jpg' alt='Sneakers' />
           <div className='home-1__text-wrapper'>
             <h1 className='home-1__title'>
               <span className='home-1__span-title'>Stan Smith,</span> Forever!

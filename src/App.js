@@ -2,7 +2,7 @@ import Layout from "./components/Layout";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
-import Cart from "./pages/Cart";
+import Orders from "./pages/Orders";
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="/favorites" element={<Favorites />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/orders" element={<Orders />} />
           <Route path="*" element={<Navigate to="/home" replace />} />
         </Route>
       </Routes>
