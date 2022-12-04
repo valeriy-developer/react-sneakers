@@ -18,16 +18,16 @@ const Header = () => {
           </Link>
         </div>
         <div className='header__nav'>
-          <div className='header__cart-wrapper'>
+          <button className='header__cart-wrapper'>
             <IconsCart className='header__cart-icon' />
             <p className='header__cart-price'>1205 грн.</p>
-          </div>
+          </button>
           <div className='header__nav-icon'>
-            <Link to='/orders'>
-              <IconsPurchases className='header__purchases' />
+            <Link className='header__purchases' to='/orders'>
+              <IconsPurchases />
             </Link>
-            <Link to='/favorites'>
-              <IconsFavorite className='header__favorites' />
+            <Link className='header__favorites' to='/favorites'>
+              <IconsFavorite />
             </Link>
           </div>
         </div>

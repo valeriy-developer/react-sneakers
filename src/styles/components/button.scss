@@ -5,8 +5,19 @@
   line-height: 100%;
   font-weight: 700;
   text-transform: uppercase;
-  color: #FFFFFF;
-  background-color: #A5D364;
+  color: #ffffff;
+  background-color: #a5d364;
   border-radius: vw(28);
   padding: vw(14) 0;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease,
+    transform 0.2s ease;
+
+  &:hover {
+    background-color: #546c32;
+    box-shadow: none;
+  }
+
+  &:active {
+    transform: scale(1.1);
+  }
 }

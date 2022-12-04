@@ -1,14 +1,78 @@
 .card {
   position: relative;
-  border: 1px solid #F3F3F3;
+  border: 1px solid #f3f3f3;
   border-radius: 40px;
   padding: vw(30);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, border 0.3s ease;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    display: block;
+    width: 0;
+    height: 0;
+    background: rgba(73, 73, 73, 0.2);
+    border-radius: 100%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+  }
+
+  &:hover {
+    box-shadow: 0px 0px 23px -3px rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(26, 25, 25, 0.2);
+
+    &::before {
+      animation: circle 0.75s;
+    }
+  }
+
+  @keyframes circle {
+    0% {
+      opacity: 1;
+    }
+    40% {
+      opacity: 1;
+    }
+    100% {
+      width: 200%;
+      height: 200%;
+      opacity: 0;
+    }
+  }
 }
 
 .card__favorite {
   position: absolute;
+  background-color: transparent;
+  cursor: pointer;
   top: vw(30);
   left: vw(30);
+  transition: transform 0.3s ease;
+
+  path {
+    transition: fill 0.3s ease;
+  }
+  rect {
+    transition: fill 0.3s ease;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+    rect {
+      fill: #f5d2d2;
+    }
+    path {
+      fill: #ff8585;
+    }
+  }
+
+  &:active {
+    transform: scale(1.3);
+  }
 }
 
 .card__img {
@@ -36,7 +100,7 @@
   font-size: vw(14);
   line-height: 100%;
   text-transform: uppercase;
-  color: #BDBDBD;
+  color: #bdbdbd;
 }
 
 .card__price {
@@ -44,4 +108,31 @@
   font-size: vw(16);
   line-height: 100%;
   margin-top: vw(5);
+}
+
+.card__cart-btn {
+  background-color: transparent;
+  transition: transform 0.3s ease;
+
+  rect {
+    transition: fill 0.3s ease;
+  }
+
+  path {
+    transition: fill 0.3s ease;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+    rect {
+      stroke: #363636;
+    }
+    path {
+      fill: #363636;
+    }
+  }
+
+  &:active {
+    transform: scale(1.3);
+  }
 }
