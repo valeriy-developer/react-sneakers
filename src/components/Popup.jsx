@@ -7,7 +7,7 @@ const Popup = () => {
     <div className='popup'>
       <div className='popup__backdrop'></div>
       <div className='popup__wrapper'>
-        {/* <>
+        <>
           <div className='popup__cart'>
             <h2 className='popup__title'>Кошик</h2>
             <div className='popup__cart-content'>
@@ -31,7 +31,7 @@ const Popup = () => {
               </div>
             </div>
           </div>
-        </> */}
+        </>
         {/* <>
           <div className='popup__empty-cart'>
             <h2 className='popup__title'>Кошик</h2>
@@ -47,7 +47,7 @@ const Popup = () => {
             </div>
           </div>
         </> */}
-        <>
+        {/* <>
           <div className='popup__empty-cart'>
             <h2 className='popup__title'>Кошик</h2>
             <div className='popup__empty-wrapper'>
@@ -62,7 +62,7 @@ const Popup = () => {
               </div>
             </div>
           </div>
-        </>
+        </> */}
       </div>
     </div>
   );

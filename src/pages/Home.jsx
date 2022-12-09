@@ -1,9 +1,55 @@
 import React from "react";
+import { v4 as uuidv4 } from "uuid";
 import IconsCircleButton from "../components/icons/IconsCircleButton";
 import IconsSearch from "../components/icons/IconsSearch";
 import Button from "../components/Button";
 import Card from "../components/Card";
 import Popup from "../components/Popup";
+
+const arr = [
+  {
+    id: uuidv4(),
+    name: "Чоловічі кросівки Nike Blazer Mid Suede",
+    price: "4000",
+    imgUrl: "/images/3.jpg",
+  },
+  {
+    id: uuidv4(),
+    name: "Чоловічі кросівки Nike Air Max 270",
+    price: "3300",
+    imgUrl: "/images/8.jpg",
+  },
+  {
+    id: uuidv4(),
+    name: "Чоловічі кросівки Nike Blazer Mid Suede",
+    price: "4000",
+    imgUrl: "/images/9.jpg",
+  },
+  {
+    id: uuidv4(),
+    name: "Кросівки Puma X Aka Boku Future Rider",
+    price: "5200",
+    imgUrl: "/images/10.jpg",
+  },
+  {
+    id: uuidv4(),
+    name: "Чоловічі кросівки Under Armour Curry 8",
+    price: "7300",
+    imgUrl: "/images/11.jpg",
+  },
+  {
+    id: uuidv4(),
+    name: "Чоловічі кросівки Nike Kyrie 7",
+    price: "2300",
+    imgUrl: "/images/12.jpg",
+  },
+  {
+    id: uuidv4(),
+    name: "Чоловічі кросівки Jordan Air Jordan 11",
+    price: "5100",
+    imgUrl: "/images/13.jpg",
+  },
+];
 
 const Home = () => {
   return (
@@ -38,10 +84,22 @@ const Home = () => {
             </div>
           </div>
           <ul className='home-2__bottom-list'>
-            <Card />
+            <>
+              {arr.map((el) => {
+                return (
+                  <Card
+                    key={el.id}
+                    name={el.name}
+                    price={el.price}
+                    image={el.imgUrl}
+                  />
+                );
+              })}
+            </>
           </ul>
         </div>
       </section>
+      <Popup />
     </>
   );
 };
