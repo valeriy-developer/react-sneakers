@@ -2,10 +2,10 @@ import React from "react";
 import Button from "./Button";
 import CardInCart from "./CardInCart";
 
-const Popup = () => {
+const Popup = ({ active, cartClose }) => {
   return (
-    <div className='popup'>
-      <div className='popup__backdrop'></div>
+    <div className={active ? "popup opened" : "popup"}>
+      <div onClick={cartClose} className='popup__backdrop'></div>
       <div className='popup__wrapper'>
         <>
           <div className='popup__cart'>

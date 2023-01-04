@@ -7,14 +7,25 @@
   width: 100%;
   height: 100%;
   z-index: 10;
-  display: none;
+  pointer-events: none;
+
+  &.opened {
+    pointer-events: auto;
+    .popup__wrapper {
+      transform: translateX(0);
+    }
+    .popup__backdrop {
+      opacity: 0.5;
+    }
+  }
 }
 
 .popup__backdrop {
   background-color: #000000;
-  opacity: 0.5;
+  opacity: 0;
   width: 100%;
   height: 100%;
+  transition: opacity 0.3s ease;
 }
 
 .popup__wrapper {
@@ -26,6 +37,8 @@
   height: 100%;
   background-color: #ffffff;
   padding: vw(30);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
 }
 
 .popup__card-list {
