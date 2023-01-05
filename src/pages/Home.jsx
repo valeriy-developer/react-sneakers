@@ -6,6 +6,8 @@ import Card from "../components/Card";
 
 const Home = () => {
   const [items, setItems] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
+  console.log(items);
 
   useEffect(() => {
     fetch("https://639714d877359127a02c1f7d.mockapi.io/items")
@@ -56,7 +58,7 @@ const Home = () => {
                     name={el.name}
                     price={el.price}
                     image={el.imgUrl}
-                    addInFavorite={() => console.log("В избранном")}
+                    // addInFavorite={() => console.log("В избранном")}
                   />
                 );
               })}

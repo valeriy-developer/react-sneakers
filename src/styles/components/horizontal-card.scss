@@ -31,3 +31,15 @@
   font-size: vw(16);
   line-height: 100%;
 }
+
+.horizontal-card__close-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}

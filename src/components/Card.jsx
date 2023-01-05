@@ -1,23 +1,24 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import IconsAddConfirmed from "./icons/IconsAddConfirmed";
 import IconsAddToCart from "./icons/IconsAddToCart";
 import IconsAddToFavorite from "./icons/IconsAddToFavorite";
-import cartContext from "../cartContext";
+import IconsFavoriteConfirmed from "./icons/IconsFavoriteConfirmed";
 
-const Card = ({ name, price, image, addInFavorite }) => {
-  const [checked, setChecked] = useState(true);
-  const { addItems } = useContext(cartContext);
-
-  const addInCart = () => {
-    setChecked(!checked);
-    addItems((prevValue) => [...prevValue, { name, price, image }]);
-  };
+const Card = ({ name, price, image }) => {
+  const [cartChecked, setCartChecked] = useState(true);
+  const [favoriteChecked, setFavoriteChecked] = useState(true);
 
   return (
     <>
       <li className='card'>
-        <div className='card__favorite' onClick={addInFavorite}>
-          <IconsAddToFavorite />
+        <div
+          className='card__favorite'
+          onClick={() => setFavoriteChecked(!favoriteChecked)}>
+          {favoriteChecked ? (
+            <IconsAddToFavorite />
+          ) : (
+            <IconsFavoriteConfirmed />
+          )}
         </div>
         <img className='card__img' src={image} alt='Sneakers' />
         <p className='card__name'>{name}</p>
@@ -26,8 +27,10 @@ const Card = ({ name, price, image, addInFavorite }) => {
             <p className='card__price-name'>Ціна:</p>
             <p className='card__price'>{price} грн.</p>
           </div>
-          <button className='card__cart-btn' onClick={addInCart}>
-            {checked ? <IconsAddToCart /> : <IconsAddConfirmed />}
+          <button
+            className='card__cart-btn'
+            onClick={() => setCartChecked(!cartChecked)}>
+            {cartChecked ? <IconsAddToCart /> : <IconsAddConfirmed />}
           </button>
         </div>
       </li>
