@@ -4,7 +4,7 @@ import IconsCart from "./icons/IconsCart";
 import IconsFavorite from "./icons/IconsFavorite";
 import IconsPurchases from "./icons/IconsPurchases";
 
-const Header = ({ cartOpen }) => {
+const Header = () => {
   return (
     <header className='header'>
       <div className='header__wrapper'>
@@ -18,7 +18,7 @@ const Header = ({ cartOpen }) => {
           </Link>
         </div>
         <div className='header__nav'>
-          <button onClick={cartOpen} className='header__cart-wrapper'>
+          <button className='header__cart-wrapper'>
             <IconsCart className='header__cart-icon' />
             <p className='header__cart-price'>1205 грн.</p>
           </button>

@@ -1,7 +1,5 @@
 import React from "react";
 import Button from "../components/Button";
-import Card from "../components/Card";
-import SquareButton from "../components/SquareButton";
 
 const Orders = () => {
   return (
@@ -16,7 +14,7 @@ const Orders = () => {
               <h2 className='orders-1__title'>Мої покупки</h2>
             </div>
             <ul className='orders-1__card-wrapper'>
-              <Card />
+              <Items />
             </ul>
           </div>
         </> */}

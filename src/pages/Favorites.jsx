@@ -1,7 +1,5 @@
 import React from "react";
 import Button from "../components/Button";
-import Card from "../components/Card";
-import SquareButton from "../components/SquareButton";
 
 const Favorites = () => {
   return (
@@ -16,7 +14,7 @@ const Favorites = () => {
               <h2 className='favorites-1__title'>Мої закладки</h2>
             </div>
             <ul className='favorites-1__card-wrapper'>
-              <Card />
+              <Items />
             </ul>
           </div>
         </> */}
