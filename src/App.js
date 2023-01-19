@@ -1,21 +1,34 @@
+import { useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
+import Header from "./components/Header";
+import Popup from "./components/Popup";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
 import Orders from "./pages/Orders";
-import Header from "./components/Header";
-import Popup from "./components/Popup";
+import AppContext from "./context";
 
 function App() {
+  const [sneakers, setSneakers] = useState([]);
+  const [cartSneakers, setCartSneakers] = useState([]);
+
+  useEffect(() => {
+    fetch("https://639714d877359127a02c1f7d.mockapi.io/items/").then((res) =>
+      res.json().then((json) => setSneakers(json))
+    );
+  }, []);
+
   return (
     <div className='global-container'>
-      <Popup/>
-      <Header/>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/favorites" element={<Favorites />} />
-        <Route path="/orders" element={<Orders />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+      <AppContext.Provider value={{ sneakers, cartSneakers }}>
+        <Header />
+        <Popup />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/favorites' element={<Favorites />} />
+          <Route path='/orders' element={<Orders />} />
+          <Route path='*' element={<Navigate to='/' replace />} />
+        </Routes>
+      </AppContext.Provider>
     </div>
   );
 }

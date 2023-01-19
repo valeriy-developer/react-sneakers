@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import IconsCircleButton from "../components/icons/IconsCircleButton";
 import IconsSearch from "../components/icons/IconsSearch";
 import Button from "../components/Button";
 import Items from "../components/Items";
+import AppContext from "../context";
 
 const Home = () => {
+  const { sneakers } = useContext(AppContext);
+
   return (
     <>
       <section className='section home-1'>
@@ -36,7 +39,16 @@ const Home = () => {
             </div>
           </div>
           <ul className='home-2__bottom-list'>
-            <Items />
+            {sneakers.map((item) => {
+              return (
+                <Items
+                  key={item.id}
+                  source={item.imgUrl}
+                  name={item.name}
+                  price={item.price}
+                />
+              );
+            })}
           </ul>
         </div>
       </section>
