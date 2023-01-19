@@ -1,11 +1,17 @@
 import React from "react";
+import { useContext } from "react";
+import AppContext from "../context";
 import Button from "./Button";
 import CartItems from "./CartItems";
 
 const Popup = () => {
+  const { cartOpened, setCartOpened } = useContext(AppContext);
+
   return (
-    <div className='popup'>
-      <div className='popup__backdrop'></div>
+    <div className={!cartOpened ? "popup" : "popup opened"}>
+      <div
+        onClick={() => setCartOpened(false)}
+        className='popup__backdrop'></div>
       <div className='popup__wrapper'>
         <div className='popup__cart'>
           <h2 className='popup__title'>Кошик</h2>

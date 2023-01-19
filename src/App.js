@@ -9,7 +9,8 @@ import AppContext from "./context";
 
 function App() {
   const [sneakers, setSneakers] = useState([]);
-  const [cartSneakers, setCartSneakers] = useState([]);
+  const [cartSneakers] = useState([]);
+  const [cartOpened, setCartOpened] = useState(false);
 
   useEffect(() => {
     fetch("https://639714d877359127a02c1f7d.mockapi.io/items/").then((res) =>
@@ -19,7 +20,8 @@ function App() {
 
   return (
     <div className='global-container'>
-      <AppContext.Provider value={{ sneakers, cartSneakers }}>
+      <AppContext.Provider
+        value={{ sneakers, cartSneakers, cartOpened, setCartOpened }}>
         <Header />
         <Popup />
         <Routes>
