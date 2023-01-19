@@ -1,12 +1,14 @@
 import React, { useState } from "react";
+import axios from "axios";
 import IconsAddConfirmed from "./icons/IconsAddConfirmed";
 import IconsAddToCart from "./icons/IconsAddToCart";
 import IconsAddToFavorite from "./icons/IconsAddToFavorite";
 import IconsFavoriteConfirmed from "./icons/IconsFavoriteConfirmed";
+import { ItemsContext } from "./Layout";
 
-const Card = ({ name, price, image }) => {
-  const [cartChecked, setCartChecked] = useState(true);
+const Card = ({ name, price, image, addInCart, checked, id }) => {
   const [favoriteChecked, setFavoriteChecked] = useState(true);
+  const { items, setItems } = React.useContext(ItemsContext);
 
   return (
     <>
@@ -27,10 +29,8 @@ const Card = ({ name, price, image }) => {
             <p className='card__price-name'>Ціна:</p>
             <p className='card__price'>{price} грн.</p>
           </div>
-          <button
-            className='card__cart-btn'
-            onClick={() => setCartChecked(!cartChecked)}>
-            {cartChecked ? <IconsAddToCart /> : <IconsAddConfirmed />}
+          <button className='card__cart-btn' onClick={addInCart}>
+            {!checked ? <IconsAddToCart /> : <IconsAddConfirmed />}
           </button>
         </div>
       </li>
