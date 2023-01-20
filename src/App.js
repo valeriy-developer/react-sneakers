@@ -11,7 +11,7 @@ function App() {
   const [sneakers, setSneakers] = useState([]);
   const [cartSneakers] = useState([]);
   const [cartOpened, setCartOpened] = useState(false);
-  const [checkedItems, setCheckedItems] = useState(false);
+  // const [isAdded, setIsAdded] = useState(false);
   // const [checkedFavorite, setCheckedFavorite] = useState(false);
 
   useEffect(() => {
@@ -28,8 +28,6 @@ function App() {
           cartSneakers,
           cartOpened,
           setCartOpened,
-          checkedItems,
-          setCheckedItems,
         }}>
         <Header />
         <Popup />

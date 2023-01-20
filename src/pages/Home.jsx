@@ -6,14 +6,12 @@ import Items from "../components/Items";
 import AppContext from "../context";
 
 const Home = () => {
-  const { sneakers, checkedItems, setCheckedItems } = useContext(AppContext);
+  const { sneakers } = useContext(AppContext);
   const [inputValue, setInputValue] = useState("");
 
   const searchItems = (e) => {
     setInputValue(e.target.value);
   };
-
-  console.log(inputValue);
 
   return (
     <>
@@ -62,7 +60,6 @@ const Home = () => {
                     source={item.imgUrl}
                     name={item.name}
                     price={item.price}
-                    checked={() => setCheckedItems(!checkedItems)}
                   />
                 );
               })}

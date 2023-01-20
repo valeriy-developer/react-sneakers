@@ -1,12 +1,15 @@
 import React from "react";
-import { useContext } from "react";
-import AppContext from "../context";
 import IconsAddToCart from "./icons/IconsAddToCart";
 import IconsAddToFavorite from "./icons/IconsAddToFavorite";
 import IconsAddConfirmed from "./icons/IconsAddConfirmed";
+import { useState } from "react";
 
-const Items = ({ source, name, price, checked }) => {
-  const { checkedItems } = useContext(AppContext);
+const Items = ({ source, name, price }) => {
+  const [isAdded, setIsAdded] = useState(false);
+
+  const onPlus = () => {
+    setIsAdded(!isAdded);
+  };
 
   return (
     <>
@@ -21,8 +24,8 @@ const Items = ({ source, name, price, checked }) => {
             <p className='card__price-name'>Ціна:</p>
             <p className='card__price'>{price} грн.</p>
           </div>
-          <button onClick={checked} className='card__cart-btn'>
-            {!checkedItems ? <IconsAddToCart /> : <IconsAddConfirmed />}
+          <button onClick={onPlus} className='card__cart-btn'>
+            {!isAdded ? <IconsAddToCart /> : <IconsAddConfirmed />}
           </button>
         </div>
       </li>
