@@ -11,6 +11,8 @@ function App() {
   const [sneakers, setSneakers] = useState([]);
   const [cartSneakers] = useState([]);
   const [cartOpened, setCartOpened] = useState(false);
+  const [checkedItems, setCheckedItems] = useState(false);
+  // const [checkedFavorite, setCheckedFavorite] = useState(false);
 
   useEffect(() => {
     fetch("https://639714d877359127a02c1f7d.mockapi.io/items/").then((res) =>
@@ -21,7 +23,14 @@ function App() {
   return (
     <div className='global-container'>
       <AppContext.Provider
-        value={{ sneakers, cartSneakers, cartOpened, setCartOpened }}>
+        value={{
+          sneakers,
+          cartSneakers,
+          cartOpened,
+          setCartOpened,
+          checkedItems,
+          setCheckedItems,
+        }}>
         <Header />
         <Popup />
         <Routes>

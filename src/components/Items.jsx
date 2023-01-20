@@ -1,8 +1,13 @@
 import React from "react";
+import { useContext } from "react";
+import AppContext from "../context";
 import IconsAddToCart from "./icons/IconsAddToCart";
 import IconsAddToFavorite from "./icons/IconsAddToFavorite";
+import IconsAddConfirmed from "./icons/IconsAddConfirmed";
 
-const Items = ({ source, name, price }) => {
+const Items = ({ source, name, price, checked }) => {
+  const { checkedItems } = useContext(AppContext);
+
   return (
     <>
       <li className='card'>
@@ -16,8 +21,8 @@ const Items = ({ source, name, price }) => {
             <p className='card__price-name'>Ціна:</p>
             <p className='card__price'>{price} грн.</p>
           </div>
-          <button className='card__cart-btn'>
-            <IconsAddToCart />
+          <button onClick={checked} className='card__cart-btn'>
+            {!checkedItems ? <IconsAddToCart /> : <IconsAddConfirmed />}
           </button>
         </div>
       </li>
