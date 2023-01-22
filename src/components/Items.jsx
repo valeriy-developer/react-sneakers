@@ -4,10 +4,11 @@ import IconsAddToFavorite from "./icons/IconsAddToFavorite";
 import IconsAddConfirmed from "./icons/IconsAddConfirmed";
 import { useState } from "react";
 
-const Items = ({ source, name, price }) => {
+const Items = ({ source, name, price, id, onPlus }) => {
   const [isAdded, setIsAdded] = useState(false);
 
-  const onPlus = () => {
+  const onClickPlus = () => {
+    onPlus({ source, name, price, id });
     setIsAdded(!isAdded);
   };
 
@@ -24,7 +25,7 @@ const Items = ({ source, name, price }) => {
             <p className='card__price-name'>Ціна:</p>
             <p className='card__price'>{price} грн.</p>
           </div>
-          <button onClick={onPlus} className='card__cart-btn'>
+          <button onClick={onClickPlus} className='card__cart-btn'>
             {!isAdded ? <IconsAddToCart /> : <IconsAddConfirmed />}
           </button>
         </div>

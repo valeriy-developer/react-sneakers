@@ -1,11 +1,18 @@
 import React from "react";
+import axios from "axios";
 import { useContext } from "react";
 import AppContext from "../context";
 import Button from "./Button";
 import CartItems from "./CartItems";
 
 const Popup = () => {
-  const { cartOpened, setCartOpened } = useContext(AppContext);
+  const { cartOpened, setCartOpened, cartSneakers, setCartSneakers } =
+    useContext(AppContext);
+
+  const removeCartItem = (id) => {
+    axios.delete(`https://639714d877359127a02c1f7d.mockapi.io/cart/${id}`);
+    setCartSneakers((prev) => prev.filter((item) => item.id !== id));
+  };
 
   return (
     <div className={!cartOpened ? "popup" : "popup opened"}>
@@ -13,31 +20,46 @@ const Popup = () => {
         onClick={() => setCartOpened(false)}
         className='popup__backdrop'></div>
       <div className='popup__wrapper'>
-        <div className='popup__cart'>
-          <h2 className='popup__title'>Кошик</h2>
-          <div className='popup__cart-content'>
-            <div className='popup__top-block'>
-              <ul className='popup__card-list'>
-                <CartItems />
-              </ul>
-            </div>
-            <div className='popup__bottom-block'>
-              <div className='popup__text-wrapper'>
-                <p className='popup__text'>Разом:</p>
-                <p className='popup__dashed-line'></p>
-                <p className='popup__amount'>21 498 грн.</p>
+        {cartSneakers.length > 0 ? (
+          <>
+            <div className='popup__cart'>
+              <h2 className='popup__title'>Кошик</h2>
+              <div className='popup__cart-content'>
+                <div className='popup__top-block'>
+                  <ul className='popup__card-list'>
+                    {cartSneakers.map((item) => {
+                      return (
+                        <CartItems
+                          key={item.id}
+                          id={item.id}
+                          source={item.source}
+                          name={item.name}
+                          price={item.price}
+                          onRemove={(id) => removeCartItem(id)}
+                        />
+                      );
+                    })}
+                  </ul>
+                </div>
+                <div className='popup__bottom-block'>
+                  <div className='popup__text-wrapper'>
+                    <p className='popup__text'>Разом:</p>
+                    <p className='popup__dashed-line'></p>
+                    <p className='popup__amount'>21 498 грн.</p>
+                  </div>
+                  <div className='popup__text-wrapper'>
+                    <p className='popup__text'>Податок 5%:</p>
+                    <p className='popup__dashed-line'></p>
+                    <p className='popup__amount'>1074 грн. </p>
+                  </div>
+                  <Button />
+                </div>
               </div>
-              <div className='popup__text-wrapper'>
-                <p className='popup__text'>Податок 5%:</p>
-                <p className='popup__dashed-line'></p>
-                <p className='popup__amount'>1074 грн. </p>
-              </div>
-              <Button />
             </div>
-          </div>
-        </div>
-
-        {/* <div className='popup__empty-cart'>
+          </>
+        ) : (
+          <>
+            <div className='popup__empty-cart'>
               <h2 className='popup__title'>Кошик</h2>
               <div className='popup__empty-wrapper'>
                 <img
@@ -49,11 +71,17 @@ const Popup = () => {
                 <p className='popup__desc'>
                   Додати хоча б одну пару кросівок, щоб зробити замовлення.
                 </p>
-                <div onClick={cartClose} className='popup__empty-btn'>
+                <div
+                  onClick={() => setCartOpened(false)}
+                  className='popup__empty-btn'>
                   <Button />
                 </div>
               </div>
-            </div> */}
+            </div>
+          </>
+        )}
+
+        {/*  */}
         {/* <>
           <div className='popup__empty-cart'>
             <h2 className='popup__title'>Кошик</h2>

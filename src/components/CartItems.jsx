@@ -1,22 +1,19 @@
-import React from "react";
 import IconsRemoveFromCart from "./icons/IconsRemoveFromCart";
 
-const CartItems = () => {
+const CartItems = ({ source, name, price, id, onRemove }) => {
+  const removeCartItem = () => {
+    onRemove(id);
+  };
+
   return (
     <>
       <li className='horizontal-card'>
-        <img
-          className='horizontal-card__img'
-          src='/images/3.jpg'
-          alt='Sneakers'
-        />
+        <img className='horizontal-card__img' src={source} alt='Sneakers' />
         <div className='horizontal-card__text-wrapper'>
-          <p className='horizontal-card__name'>
-            Чоловічі кросівки Nike Blazer Mid Suede
-          </p>
-          <p className='horizontal-card__price'>3100 грн.</p>
+          <p className='horizontal-card__name'>{name}</p>
+          <p className='horizontal-card__price'>{price} грн.</p>
         </div>
-        <button className='horizontal-card__close-btn'>
+        <button onClick={removeCartItem} className='horizontal-card__close-btn'>
           <IconsRemoveFromCart />
         </button>
       </li>

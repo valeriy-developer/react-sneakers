@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import axios from "axios";
 import IconsCircleButton from "../components/icons/IconsCircleButton";
 import IconsSearch from "../components/icons/IconsSearch";
 import Button from "../components/Button";
@@ -6,11 +7,25 @@ import Items from "../components/Items";
 import AppContext from "../context";
 
 const Home = () => {
-  const { sneakers } = useContext(AppContext);
+  const { sneakers, cartSneakers, setCartSneakers } = useContext(AppContext);
   const [inputValue, setInputValue] = useState("");
 
   const searchItems = (e) => {
     setInputValue(e.target.value);
+  };
+
+  const addCartItem = (obj) => {
+    const newSneakersIdx = cartSneakers.findIndex((item) => item.id === obj.id);
+
+    if (newSneakersIdx !== -1) {
+      let newCartSneakers = cartSneakers.map((item) => item);
+
+      newCartSneakers.splice(newSneakersIdx, 1);
+      setCartSneakers(newCartSneakers);
+    } else {
+      setCartSneakers((prev) => [...prev, obj]);
+      axios.post("https://639714d877359127a02c1f7d.mockapi.io/cart/", obj);
+    }
   };
 
   return (
@@ -60,6 +75,7 @@ const Home = () => {
                     source={item.imgUrl}
                     name={item.name}
                     price={item.price}
+                    onPlus={(obj) => addCartItem(obj)}
                   />
                 );
               })}
