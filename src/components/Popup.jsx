@@ -3,14 +3,34 @@ import { useContext } from "react";
 import AppContext from "../context";
 import Button from "./Button";
 import CartItems from "./CartItems";
+import { updateSneakers } from "../api/fetchItems";
 import { deleteSneakers } from "../api/fetchCart";
 
 const Popup = () => {
-  const { cartOpened, setCartOpened, cartSneakers, setCartSneakers } =
-    useContext(AppContext);
+  const {
+    sneakers,
+    setSneakers,
+    cartOpened,
+    setCartOpened,
+    cartSneakers,
+    setCartSneakers,
+    totalPrice,
+    totalPriceWithTax,
+  } = useContext(AppContext);
 
   const removeCartItem = async (id) => {
     await deleteSneakers(id);
+    await updateSneakers(id, { checked: false });
+
+    const updatedItems = sneakers.map((item) => {
+      if (item.id === id) {
+        return { ...item, checked: false };
+      }
+
+      return item;
+    });
+    setSneakers(updatedItems);
+
     setCartSneakers((prev) => prev.filter((item) => item.id !== id));
   };
 
@@ -32,7 +52,7 @@ const Popup = () => {
                         <CartItems
                           key={item.id}
                           id={item.id}
-                          source={item.source}
+                          source={item.imgUrl}
                           name={item.name}
                           price={item.price}
                           onRemove={(id) => removeCartItem(id)}
@@ -45,12 +65,12 @@ const Popup = () => {
                   <div className='popup__text-wrapper'>
                     <p className='popup__text'>Разом:</p>
                     <p className='popup__dashed-line'></p>
-                    <p className='popup__amount'>21 498 грн.</p>
+                    <p className='popup__amount'>{totalPrice} грн.</p>
                   </div>
                   <div className='popup__text-wrapper'>
                     <p className='popup__text'>Податок 5%:</p>
                     <p className='popup__dashed-line'></p>
-                    <p className='popup__amount'>1074 грн. </p>
+                    <p className='popup__amount'>{totalPriceWithTax} грн. </p>
                   </div>
                   <Button />
                 </div>

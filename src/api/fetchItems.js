@@ -1,5 +1,5 @@
 import { db } from "../utils/firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, updateDoc, doc } from "firebase/firestore";
 
 export const getSneakers = async () => {
   const querySnapshotSneakers = await getDocs(collection(db, "items"));
@@ -9,4 +9,10 @@ export const getSneakers = async () => {
   });
 
   return sneakersData;
+};
+
+export const updateSneakers = async (id, obj) => {
+  const res = await updateDoc(doc(db, "items", id), { ...obj });
+
+  return res;
 };

@@ -2,12 +2,14 @@ import React, { useContext, useState } from "react";
 import IconsCircleButton from "../components/icons/IconsCircleButton";
 import IconsSearch from "../components/icons/IconsSearch";
 import Button from "../components/Button";
-import Items from "../components/Items";
+import Item from "../components/Item";
 import AppContext from "../context";
 import { addNewSneaker, deleteSneakers } from "../api/fetchCart";
+import { updateSneakers } from "../api/fetchItems";
 
 const Home = () => {
-  const { sneakers, cartSneakers, setCartSneakers } = useContext(AppContext);
+  const { sneakers, setSneakers, cartSneakers, setCartSneakers } =
+    useContext(AppContext);
   const [inputValue, setInputValue] = useState("");
   const searchItems = (e) => {
     setInputValue(e.target.value);
@@ -16,6 +18,15 @@ const Home = () => {
   const addCartItem = async (obj) => {
     const newSneakers = cartSneakers.find((item) => item.id === obj.id);
 
+    const updatedItems = sneakers.map((item) => {
+      if (item.id === obj.id) {
+        return { ...item, checked: !item.checked };
+      }
+
+      return item;
+    });
+    setSneakers(updatedItems);
+
     if (newSneakers) {
       const updatedSneakers = cartSneakers.filter(
         (item) => item.id !== newSneakers.id
@@ -23,12 +34,14 @@ const Home = () => {
 
       setCartSneakers(updatedSneakers);
 
+      await updateSneakers(obj.id, { checked: false });
       await deleteSneakers(newSneakers.id);
       return;
     }
 
     setCartSneakers((prev) => [...prev, obj]);
 
+    await updateSneakers(obj.id, { checked: true });
     await addNewSneaker(obj);
   };
 
@@ -73,12 +86,13 @@ const Home = () => {
               )
               .map((item) => {
                 return (
-                  <Items
+                  <Item
                     key={item.id}
                     id={item.id}
                     source={item.imgUrl}
                     name={item.name}
                     price={item.price}
+                    checked={item.checked}
                     onPlus={(obj) => addCartItem(obj)}
                   />
                 );

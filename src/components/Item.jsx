@@ -5,12 +5,12 @@ import IconsAddConfirmed from "./icons/IconsAddConfirmed";
 import { useState } from "react";
 import IconsFavoriteConfirmed from "./icons/IconsFavoriteConfirmed";
 
-const Items = ({ source, name, price, id, onPlus }) => {
+const Items = ({ source, name, price, id, onPlus, checked }) => {
   const [isAdded, setIsAdded] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
 
   const onClickPlus = () => {
-    onPlus({ source, name, price, id });
+    onPlus({ imgUrl: source, name, price, id, checked: true });
     setIsAdded(!isAdded);
   };
 
@@ -32,7 +32,7 @@ const Items = ({ source, name, price, id, onPlus }) => {
             <p className='card__price'>{price} грн.</p>
           </div>
           <button onClick={onClickPlus} className='card__cart-btn'>
-            {!isAdded ? <IconsAddToCart /> : <IconsAddConfirmed />}
+            {!checked ? <IconsAddToCart /> : <IconsAddConfirmed />}
           </button>
         </div>
       </li>

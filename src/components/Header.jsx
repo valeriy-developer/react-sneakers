@@ -7,7 +7,7 @@ import IconsFavorite from "./icons/IconsFavorite";
 import IconsPurchases from "./icons/IconsPurchases";
 
 const Header = () => {
-  const { setCartOpened } = useContext(AppContext);
+  const { setCartOpened, totalPrice } = useContext(AppContext);
 
   return (
     <header className='header'>
@@ -26,7 +26,7 @@ const Header = () => {
             onClick={() => setCartOpened(true)}
             className='header__cart-wrapper'>
             <IconsCart className='header__cart-icon' />
-            <p className='header__cart-price'>1205 грн.</p>
+            <p className='header__cart-price'>{totalPrice} грн.</p>
           </button>
           <div className='header__nav-icon'>
             <Link className='header__purchases' to='/orders'>
