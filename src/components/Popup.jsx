@@ -1,16 +1,16 @@
 import React from "react";
-import axios from "axios";
 import { useContext } from "react";
 import AppContext from "../context";
 import Button from "./Button";
 import CartItems from "./CartItems";
+import { deleteSneakers } from "../api/fetchCart";
 
 const Popup = () => {
   const { cartOpened, setCartOpened, cartSneakers, setCartSneakers } =
     useContext(AppContext);
 
-  const removeCartItem = (id) => {
-    axios.delete(`https://639714d877359127a02c1f7d.mockapi.io/cart/${id}`);
+  const removeCartItem = async (id) => {
+    await deleteSneakers(id);
     setCartSneakers((prev) => prev.filter((item) => item.id !== id));
   };
 

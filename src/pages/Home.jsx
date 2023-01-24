@@ -1,31 +1,35 @@
 import React, { useContext, useState } from "react";
-import axios from "axios";
 import IconsCircleButton from "../components/icons/IconsCircleButton";
 import IconsSearch from "../components/icons/IconsSearch";
 import Button from "../components/Button";
 import Items from "../components/Items";
 import AppContext from "../context";
+import { addNewSneaker, deleteSneakers } from "../api/fetchCart";
 
 const Home = () => {
   const { sneakers, cartSneakers, setCartSneakers } = useContext(AppContext);
   const [inputValue, setInputValue] = useState("");
-
   const searchItems = (e) => {
     setInputValue(e.target.value);
   };
 
-  const addCartItem = (obj) => {
-    const newSneakersIdx = cartSneakers.findIndex((item) => item.id === obj.id);
+  const addCartItem = async (obj) => {
+    const newSneakers = cartSneakers.find((item) => item.id === obj.id);
 
-    if (newSneakersIdx !== -1) {
-      let newCartSneakers = cartSneakers.map((item) => item);
+    if (newSneakers) {
+      const updatedSneakers = cartSneakers.filter(
+        (item) => item.id !== newSneakers.id
+      );
 
-      newCartSneakers.splice(newSneakersIdx, 1);
-      setCartSneakers(newCartSneakers);
-    } else {
-      setCartSneakers((prev) => [...prev, obj]);
-      axios.post("https://639714d877359127a02c1f7d.mockapi.io/cart/", obj);
+      setCartSneakers(updatedSneakers);
+
+      await deleteSneakers(newSneakers.id);
+      return;
     }
+
+    setCartSneakers((prev) => [...prev, obj]);
+
+    await addNewSneaker(obj);
   };
 
   return (

@@ -6,7 +6,8 @@ import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
 import Orders from "./pages/Orders";
 import AppContext from "./context";
-import axios from "axios";
+import { getSneakers } from "./api/fetchItems";
+import { getCartSneakers } from "./api/fetchCart";
 
 function App() {
   const [sneakers, setSneakers] = useState([]);
@@ -16,13 +17,15 @@ function App() {
   // const [checkedFavorite, setCheckedFavorite] = useState(false);
 
   useEffect(() => {
-    axios
-      .get("https://639714d877359127a02c1f7d.mockapi.io/items/")
-      .then((res) => setSneakers(res.data));
+    const fetchSneakers = async () => {
+      const sneakersData = await getSneakers();
+      setSneakers(sneakersData);
 
-    axios
-      .get("https://639714d877359127a02c1f7d.mockapi.io/cart/")
-      .then((res) => setCartSneakers(res.data));
+      const cartData = await getCartSneakers();
+      setCartSneakers(cartData);
+    };
+
+    fetchSneakers();
   }, []);
 
   return (
