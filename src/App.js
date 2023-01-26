@@ -13,6 +13,7 @@ import { computePrice } from "./utils/computePrice";
 function App() {
   const [sneakers, setSneakers] = useState([]);
   const [cartSneakers, setCartSneakers] = useState([]);
+  const [favoriteSneakers, setFavoriteSneakers] = useState([]);
   const [cartOpened, setCartOpened] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalPriceWithTax, setTotalPriceWithTax] = useState(0);
@@ -45,6 +46,8 @@ function App() {
           setSneakers,
           cartSneakers,
           setCartSneakers,
+          favoriteSneakers,
+          setFavoriteSneakers,
           cartOpened,
           setCartOpened,
           totalPrice,

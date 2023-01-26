@@ -2,27 +2,30 @@ import React from "react";
 import IconsAddToCart from "./icons/IconsAddToCart";
 import IconsAddToFavorite from "./icons/IconsAddToFavorite";
 import IconsAddConfirmed from "./icons/IconsAddConfirmed";
-import { useState } from "react";
 import IconsFavoriteConfirmed from "./icons/IconsFavoriteConfirmed";
 
-const Items = ({ source, name, price, id, onPlus, checked }) => {
-  const [isAdded, setIsAdded] = useState(false);
-  const [isFavorite, setIsFavorite] = useState(false);
-
+const Items = ({
+  source,
+  name,
+  price,
+  onPlus,
+  onFavorite,
+  checked,
+  favorited,
+}) => {
   const onClickPlus = () => {
-    onPlus({ imgUrl: source, name, price, id, checked: true });
-    setIsAdded(!isAdded);
+    onPlus();
   };
 
   const onClickFavorite = () => {
-    setIsFavorite(!isFavorite);
+    onFavorite();
   };
 
   return (
     <>
       <li className='card'>
         <button onClick={onClickFavorite} className='card__favorite'>
-          {!isFavorite ? <IconsAddToFavorite /> : <IconsFavoriteConfirmed />}
+          {!favorited ? <IconsAddToFavorite /> : <IconsFavoriteConfirmed />}
         </button>
         <img className='card__img' src={source} alt='Sneakers' />
         <p className='card__name'>{name}</p>

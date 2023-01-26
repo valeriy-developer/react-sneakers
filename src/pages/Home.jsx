@@ -11,6 +11,7 @@ const Home = () => {
   const { sneakers, setSneakers, cartSneakers, setCartSneakers } =
     useContext(AppContext);
   const [inputValue, setInputValue] = useState("");
+
   const searchItems = (e) => {
     setInputValue(e.target.value);
   };
@@ -93,7 +94,7 @@ const Home = () => {
                     name={item.name}
                     price={item.price}
                     checked={item.checked}
-                    onPlus={(obj) => addCartItem(obj)}
+                    onPlus={() => addCartItem(item)}
                   />
                 );
               })}
